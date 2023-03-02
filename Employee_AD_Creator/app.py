@@ -1,18 +1,30 @@
 from tkinter import *
+import cv2 as cv
 
 root = Tk()
 
 e = Entry(root, width=50)
 e.pack()
-e.insert(0, "Enter Your Name")
-
-def myClick():
-    hello = "Hello, " + e.get()
-    myLabel = Label(root, text=hello)
-    myLabel.pack()
 
 
-myButton = Button(root, text="Enter Your Name", padx=50, pady=50, activebackground="Blue", command=myClick, fg="white", bg="black")  # state=DISABLED
+def openCamera():
+    cam_port = 1
+    cam = cv.VideoCapture(cam_port)
+    while True:
+
+        result, frame = cam.read()
+
+        if result:
+
+            cv.imshow('frame', frame)
+
+            cv.waitKey(0)
+
+            cam.release()
+
+
+myButton = Button(root, text="Click For Photo", padx=10, pady=10, activebackground="Blue", command=openCamera,
+                  fg="white", bg="black")
 myButton.pack()
 
 root.mainloop()
