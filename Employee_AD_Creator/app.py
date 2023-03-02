@@ -16,7 +16,9 @@ def openCamera():
 
         if result:
 
-            cv.imshow('frame', frame)
+            cv.imshow(e.get(), frame)
+
+            cv.imwrite(e.get()+".png", frame)
 
             cv.waitKey(0)
 
